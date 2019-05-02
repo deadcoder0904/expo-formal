@@ -1,0 +1,23 @@
+{
+  "main": "node_modules/expo/AppEntry.js",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "eject": "expo eject",
+    "postinstall": "expo-enable-hooks"
+  },
+  "dependencies": {
+    "@kevinwolf/formal-native": "^0.1.0",
+    "expo": "^32.0.6",
+    "react": "16.8.6",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
+    "react-native-elements": "^1.1.0",
+    "yup": "^0.27.0"
+  },
+  "devDependencies": {
+    "@kevinwolf/expo-enable-hooks": "^1.0.0",
+    "babel-preset-expo": "^5.0.0"
+  },
+  "private": true
+}
