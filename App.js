@@ -1,6 +1,6 @@
 import useFormal from '@kevinwolf/formal-native'
 import React from 'react'
-import { SafeAreaView, StatusBar, StyleSheet, View } from 'react-native'
+import { Alert, SafeAreaView, StyleSheet, View } from 'react-native'
 import { Button, Input, Text } from 'react-native-elements'
 import * as yup from 'yup'
 
@@ -14,19 +14,18 @@ const schema = yup.object().shape({
     .string()
     .min(4)
     .max(32)
-    .matches('^(?=.*[a-z])(?=.*[A-Z])(?=.*d)[a-zA-Zd]$')
     .required(),
-  ConfirmPassword: yup
+  'Confirm Password': yup
     .string()
     .oneOf([yup.ref('Password'), null], "Passwords don't match")
     .required(),
 })
 
 const initialValues = {
-  Username: 'tonystark',
-  Email: 'tonystark@avengers.io',
-  Password: 'avengers',
-  ConfirmPassword: 'avengers',
+  Username: '',
+  Email: '',
+  Password: '',
+  'Confirm Password': '',
 }
 
 const Field = ({ placeholder, error, ...props }) => (
@@ -48,7 +47,6 @@ function App() {
   return (
     <SafeAreaView>
       <View style={styles.space}>
-        <StatusBar hidden />
         <Text h1>Formal</Text>
         <Field {...formal.getFieldProps('Username')} placeholder="Username" />
         <Field {...formal.getFieldProps('Email')} placeholder="Email" />
@@ -58,7 +56,7 @@ function App() {
           secureTextEntry
         />
         <Field
-          {...formal.getFieldProps('ConfirmPassword')}
+          {...formal.getFieldProps('Confirm Password')}
           placeholder="Confirm Password"
           secureTextEntry
         />
