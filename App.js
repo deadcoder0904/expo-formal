@@ -22,10 +22,10 @@ const schema = yup.object().shape({
 })
 
 const initialValues = {
-  Username: '',
-  Email: '',
-  Password: '',
-  'Confirm Password': '',
+  Username: 'tonystark',
+  Email: 'tonystark@avengers.io',
+  Password: 'doodoo',
+  'Confirm Password': 'doodoo',
 }
 
 const Field = ({ placeholder, error, ...props }) => (
@@ -41,7 +41,30 @@ const Field = ({ placeholder, error, ...props }) => (
 function App() {
   const formal = useFormal(initialValues, {
     schema,
-    onSubmit: values => Alert.alert(JSON.stringify(values)),
+    onSubmit: values => {
+      console.log(values)
+      const username = values['Username']
+      const email = values['Email']
+      const password = values['Password']
+      const confirmPass = values['Confirm Password']
+      fetch('http://localhost:1337/form', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, email, password, confirmPass }),
+      })
+        .then(res => res.json())
+        .then(data => {
+          console.log({ data })
+          Alert.alert(JSON.stringify(data))
+        })
+        .catch(err => {
+          console.log({ err })
+          Alert.alert(JSON.stringify(err))
+        })
+    },
   })
 
   return (
