@@ -5,12 +5,11 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "eject": "expo eject",
-    "server": "node server.js",
+    "server": "nodemon server.js",
     "postinstall": "expo-enable-hooks"
   },
   "dependencies": {
     "@kevinwolf/formal-native": "^0.1.0",
-    "body-parser": "^1.19.0",
     "expo": "^32.0.6",
     "express": "^4.16.4",
     "express-validator": "^5.3.1",
@@ -21,7 +20,8 @@
   },
   "devDependencies": {
     "@kevinwolf/expo-enable-hooks": "^1.0.0",
-    "babel-preset-expo": "^5.0.0"
+    "babel-preset-expo": "^5.0.0",
+    "nodemon": "^1.19.0"
   },
   "private": true
 }

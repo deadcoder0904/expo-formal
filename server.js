@@ -1,21 +1,16 @@
 const express = require('express')
-const bodyParser = require('body-parser')
 const app = express()
 const { check, validationResult } = require('express-validator/check')
 
-app.use(bodyParser.json())
 app.use(express.json())
-
-app.get('/', (req, res) => {
-  res.json({ lol: true })
-})
 
 app.post(
   '/form',
   [
     check('username')
       .not()
-      .isEmpty(),
+      .isEmpty()
+      .withMessage('Username is a required field'),
     check('email')
       .isEmail()
       .withMessage('Invalid Email Address'),
@@ -24,11 +19,10 @@ app.post(
       .withMessage('Password must be at least 4 characters')
       .isLength({ max: 32 })
       .withMessage('Password must be atmost 32 characters')
-      .custom((value, { req }) => {
-        if (value !== req.body.confirmPass) {
+      .custom((password, { req }) => {
+        if (password === req.body.confirmPass) return password
+        else {
           throw new Error("Passwords don't match")
-        } else {
-          return value
         }
       }),
   ],
