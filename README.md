@@ -2,7 +2,7 @@
 
 > Using Expo with Formal to make the world's simplest forms in React Native
 
-![App](./blog/app.png)
+![App](./assets/app.png)
 
 # Clone the repo
 
